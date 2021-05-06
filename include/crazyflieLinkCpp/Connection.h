@@ -77,6 +77,10 @@ public:
 
   Packet recv(unsigned int timeout_in_ms);
 
+  void setAutoPing(bool autoping);
+
+  bool getAutoPing();
+
   void close();
 
   const std::string& uri() const;

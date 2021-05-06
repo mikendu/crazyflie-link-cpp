@@ -87,6 +87,7 @@ PYBIND11_MODULE(cflinkcpp, m) {
       .def("send", &Connection::send, py::call_guard<py::gil_scoped_release>())
       .def("recv", &Connection::recv, py::arg("timeout"), py::call_guard<py::gil_scoped_release>())
       .def("close", &Connection::close, py::call_guard<py::gil_scoped_release>())
+      .def_property("auto_ping", &Connection::getAutoPing, &Connection::setAutoPing)
       .def_property_readonly("uri", &Connection::uri)
       .def_property_readonly("statistics", &Connection::statistics)
       .def("__repr__", &toString<Connection>);

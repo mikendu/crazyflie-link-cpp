@@ -271,6 +271,18 @@ Packet Connection::recv(unsigned int timeout_in_ms)
   return result;
 }
 
+void Connection::setAutoPing(bool autoping)
+{
+    const std::lock_guard<std::mutex> lock(impl_->queue_send_mutex_);
+    impl_->useAutoPing_ = autoping;
+}
+
+bool Connection::getAutoPing()
+{
+    const std::lock_guard<std::mutex> lock(impl_->queue_send_mutex_);
+    return impl_->useAutoPing_;
+}
+
 std::ostream& operator<<(std::ostream& out, const Connection& p)
 {
   out <<"Connection(" << p.impl_->uri_;
